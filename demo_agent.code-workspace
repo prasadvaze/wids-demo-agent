@@ -4,10 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "src/graphika/data-agent"
+			"path": "src/wids/data-agent"
 		},
 		{
-			"path": "src/graphika/agent-ui/app"
+			"path": "src/wids/agent-ui"
 		}
 	],
 	"settings": {
