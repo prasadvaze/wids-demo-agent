@@ -1,13 +1,20 @@
 {
 	"folders": [
 		{
+			"name": "wids-demo-agent",
 			"path": "."
 		},
 		{
+			"name": "agent-ui",
+			"path": "src/wids/agent-ui"
+		},
+		{
+			"name": "data-agent",
 			"path": "src/wids/data-agent"
 		},
 		{
-			"path": "src/wids/agent-ui"
+			"name": "api",
+			"path": "src/wids/data-agent/api"
 		}
 	],
 	"settings": {
