@@ -1,0 +1,29 @@
+*.pyc
+
+.DS_Store
+# Packages
+/dist/*
+
+# Unit test / coverage reports
+.coverage
+.pytest_cache
+
+# Python
+.python-version
+
+# Editor
+.idea/*
+.vscode/*
+
+# Cache
+__pycache__
+
+# Environment
+.env
+.venv
+
+# Logs
+logs/*
+*.log
+*.log.*
+*.log.*.*

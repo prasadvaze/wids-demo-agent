@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "src/graphika/data-agent"
+		},
+		{
+			"path": "src/graphika/agent-ui/app"
+		}
+	],
+	"settings": {
+		"conventionalCommits.scopes": [
+			"all"
+		]
+	}
+}
