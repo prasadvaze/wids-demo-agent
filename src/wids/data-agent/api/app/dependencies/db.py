@@ -1,5 +1,6 @@
-import os
 import logging
+import os
+import sys
 
 from functools import partial
 
@@ -7,7 +8,7 @@ from fastapi import FastAPI
 from tortoise import Tortoise, run_async
 from tortoise.contrib.fastapi import register_tortoise, RegisterTortoise
 
-
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 logger = logging.getLogger("cool.api.db")
 
 
@@ -45,7 +46,7 @@ async def generate_schema() -> None:
 
     await Tortoise.init(
         db_url=os.environ.get("DATABASE_URL"),
-        modules={"models": ["app.models.tortoise"]},
+        modules={"models": ["models.tortoise"]},
     )
     logger.info("Generating database schema...")
     await Tortoise.generate_schemas()
