@@ -6,7 +6,7 @@ authors = [
     {name = "Michelle Rojas",email = "michelle.rojas@graphika.com"}
 ]
 readme = "README.md"
-requires-python = "^3.12"
+requires-python = ">=3.12,<4.0.0"
 dependencies = [
     "streamlit (>=1.43.2,<2.0.0)",
     "pandas[performance] (>=2.2.3,<3.0.0)",

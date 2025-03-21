@@ -22,6 +22,9 @@ __pycache__
 .env
 .venv
 
+# Formatter
+.ruff_cache
+
 # Logs
 logs/*
 *.log

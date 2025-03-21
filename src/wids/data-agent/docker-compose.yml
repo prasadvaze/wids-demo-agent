@@ -3,7 +3,7 @@ services:
     build:
       context: ./api
       dockerfile: ./Dockerfile
-    command: fastapi run app/main.py --port 8000
+    command: fastapi dev app/main.py --port 8000
     volumes:
       - ./api:/usr/src/app
     ports:
@@ -15,7 +15,7 @@ services:
       - DATABASE_TEST_URL=postgres://postgres:supersecretpassword@web-db:5432/web_test
     depends_on:
       - web-db
-  
+
   web-db:
     build:
       context: ./api/db

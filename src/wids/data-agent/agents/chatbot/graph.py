@@ -16,9 +16,7 @@ class ChatbotGraph:
         self.temperature = temperature
 
         self.system_prompt = SYSTEM_PROMPT
-        self.chatbot_node = ChatbotNode(
-            self.model_name, self.temperature, self.system_prompt
-        )
+        self.chatbot_node = ChatbotNode(self.model_name, self.temperature, self.system_prompt)
 
         self.memory_saver = MemorySaver()
 

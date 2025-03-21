@@ -19,13 +19,22 @@ def create_plan(state: SimpleAgentState, plan_chain: Any) -> SimpleAgentState:
 
 
 def conduct_research(state: SimpleAgentState, research_chain: Any) -> SimpleAgentState:
-    findings = research_chain.invoke({"question": state["question"], "research_plan": state["research_plan"]})
-    return {**state, "findings": state.get("findings", []) + [findings.content], "next_step": "summarize"}
+    findings = research_chain.invoke(
+        {"question": state["question"], "research_plan": state["research_plan"]}
+    )
+    return {
+        **state,
+        "findings": state.get("findings", []) + [findings.content],
+        "next_step": "summarize",
+    }
 
 
 def create_summary(state: SimpleAgentState, summary_chain: Any) -> SimpleAgentState:
-    summary = summary_chain.invoke({"question": state["question"], "findings": "\n".join(state["findings"])})
+    summary = summary_chain.invoke(
+        {"question": state["question"], "findings": "\n".join(state["findings"])}
+    )
     return {**state, "summary": summary.content, "next_step": "end"}
+
 
 def main():
     # Initialize the model
@@ -41,23 +50,27 @@ Research Plan:
     )
     plan_chain = planner_prompt | llm
 
-    resarch_prompt = ChatPromptTemplate.from_template(("""
+    resarch_prompt = ChatPromptTemplate.from_template(
+        """
 You are a research assistant. Given a question and research plan, 
 conduct research and provide your findings.
 Question: {question}
 Research Plan: {research_plan}
 Findings:
-""")
+"""
+    )
     research_chain = resarch_prompt | llm
-    
-    summarize_prompt = ChatPromptTemplate.from_template(("""You are a research assistant. Summarize the following findings into a 
+
+    summarize_prompt = ChatPromptTemplate.from_template(
+        (
+            """You are a research assistant. Summarize the following findings into a 
 comprehensive answer to the original question.
 Question: {question}
 Findings: {findings}
-Summary:"""))
+Summary:"""
+        )
+    )
     summarize_chain = summarize_prompt | llm
 
     # Define the graph
     graph = StateGraph(SimpleAgentState)
-    
-    
