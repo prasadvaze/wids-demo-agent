@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     environment: str = "dev"
     testing: bool = bool(0)
     database_url: AnyUrl = None
+    openai_api_key: str = None
 
 
 @lru_cache()
@@ -25,7 +26,9 @@ def get_settings() -> BaseSettings:
 class BaseConfig(BaseSettings):
     BASE_DIR: pathlib.Path = pathlib.Path(__file__).parent.parent
 
-    DATABASE_URL: str = os.environ.get("DATABASE_URL", f"sqlite:///{BASE_DIR}/db.sqlite3")
+    DATABASE_URL: str = os.environ.get(
+        "DATABASE_URL", f"sqlite:///{BASE_DIR}/db.sqlite3"
+    )
     DATABASE_CONNECT_DICT: dict = {}
 
 
@@ -62,6 +65,3 @@ def get_config() -> BaseSettings:
     config_name = os.environ.get("ENV", "local")
     config_cls = config_cls_dict[config_name]
     return config_cls()
-
-
-# config = get_config()

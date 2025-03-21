@@ -5,8 +5,12 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from tortoise import Tortoise, generate_config
-from tortoise.contrib.fastapi import RegisterTortoise, tortoise_exception_handlers
-from app import create_application, routes
+from tortoise.contrib.fastapi import (
+    RegisterTortoise,
+    tortoise_exception_handlers,
+)
+from app import create_application
+from app.routes import chat_router, ping_router
 from app.dependencies.db import register_orm
 
 # Configure logging
@@ -44,6 +48,6 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
 app = create_application(
     lifespan_handler=lifespan,
-    exception_handlers=tortoise_exception_handlers,
-    routes=routes.__all__,
+    exception_handlers=tortoise_exception_handlers(),
+    routes=[chat_router, ping_router],
 )

@@ -1,12 +1,14 @@
-from fastapi import FastAPI, APIRoute
-from starlette.types import Lifespan
-from starlette.exceptions import ExceptionHandler
+from fastapi import FastAPI, APIRouter
+from starlette.types import Lifespan, ExceptionHandler
+from typing import Type, Union
 
 
 def create_application(
     lifespan_handler: Lifespan | None = None,
-    exception_handlers: dict[int, ExceptionHandler] | None = None,
-    routes: list[APIRoute] | None = None,
+    exception_handlers: (
+        dict[Union[int, Type[Exception]], ExceptionHandler] | None
+    ) = None,
+    routes: list[APIRouter] | None = None,
 ) -> FastAPI:
     app = FastAPI(
         title="Secret Agent API",

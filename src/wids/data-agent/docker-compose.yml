@@ -3,7 +3,7 @@ services:
     build:
       context: ./api
       dockerfile: ./Dockerfile
-    command: fastapi dev app/main.py --port 8000
+    command: fastapi run app/main.py --port 8000
     volumes:
       - ./api:/usr/src/app
     ports:
@@ -13,6 +13,7 @@ services:
       - TESTING=0
       - DATABASE_URL=postgres://postgres:supersecretpassword@web-db:5432/web_dev
       - DATABASE_TEST_URL=postgres://postgres:supersecretpassword@web-db:5432/web_test
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
       - web-db
 
