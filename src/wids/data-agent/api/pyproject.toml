@@ -27,6 +27,9 @@ ruff = "^0.11.1"
 [tool.poetry.group.test.dependencies]
 pytest = "^8.3.5"
 httpx = "^0.28.1"
+asgi-lifespan = "^2.1.0"
+pytest-asyncio = "^0.25.3"
+pytest-cov = "^6.0.0"
 
 [tool.aerich]
 tortoise_orm = "app.dependencies.db.TORTOISE_ORM"
@@ -39,8 +42,9 @@ line-length = 100
 [tool.ruff.format]
 docstring-code-format = true
 
-[tool.pytest_env]
-ENVIRONMENT = "test"
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
+asyncio_mode = "auto"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

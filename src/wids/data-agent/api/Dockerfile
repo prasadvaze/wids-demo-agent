@@ -20,8 +20,8 @@ ENV PYTHONFAULTHANDLER=1 \
 WORKDIR /usr/src/app
 
 RUN apt-get update \
-  && apt-get -y install netcat-traditional gcc postgresql \
-  && apt-get clean
+    && apt-get -y install netcat-traditional gcc postgresql \
+    && apt-get clean
 
 ENV PATH="/root/.local/bin:${PATH}"
 
