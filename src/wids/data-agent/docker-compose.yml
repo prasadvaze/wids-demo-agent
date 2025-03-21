@@ -3,16 +3,16 @@ services:
     build:
       context: ./api
       dockerfile: ./Dockerfile
-    command: uvicorn api.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    command: fastapi run app/main.py --port 8000
     volumes:
-      - ./src/wids/data-agent:/usr/src/app
+      - ./api:/usr/src/app
     ports:
       - "8004:8000"
     environment:
       - ENVIRONMENT=dev
       - TESTING=0
-      - POSTGRES_URL=postgresql://postgres:supersecretpassword@web-db:5432/web_dev
-      - POSTGRES_TEST_URL=postgresql://postgres:supersecretpassword@web-db:5432/web_test
+      - DATABASE_URL=postgres://postgres:supersecretpassword@web-db:5432/web_dev
+      - DATABASE_TEST_URL=postgres://postgres:supersecretpassword@web-db:5432/web_test
     depends_on:
       - web-db
   

@@ -22,6 +22,10 @@ dependencies = [
 [tool.poetry.group.dev.dependencies]
 pyclean = "^3.1.0"
 
+
+[tool.poetry.group.test.dependencies]
+pytest-env = "^1.1.5"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"

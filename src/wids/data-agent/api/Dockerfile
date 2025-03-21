@@ -33,18 +33,17 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     python3 -m pipx install "poetry==$POETRY_VERSION" && \
     python3 -m pipx inject poetry poetry-plugin-bundle && \ 
     touch README.md && \
-    poetry bundle venv --only=main /venv
+    poetry bundle venv --with test /venv
 
 COPY ./app /usr/src/app
 
 RUN addgroup --gid 1001 --system app && \
-    adduser --no-create-home --disabled-password --uid 1001 --system --group app
+    adduser --no-create-home --shell /bin/false --disabled-password --uid 1001 --system --group app
 
-COPY entrypoint.sh .
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
 
 USER app
 
 ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]
 
-# CMD ["fastapi", "run", "main.py", "--port", "8000"]
